@@ -20,14 +20,13 @@ export default defineComponent({
   },
   methods: {
     createBreadItems(path: string) {
-      let to = "";
       const result: any = [];
       // /区切りで配列化、カラ文字は除外
       const paths: string[] = path.split("/").filter((value) => value);
       //返却用オブジェクト作成
       paths.forEach((path) => {
-        to += `/${path}`;
-        result.push({ label: path, to });
+        const last = result.slice(-1)[0] || { to: "" };
+        result.push({ label: path, to: `${last.to}/${path}` });
       });
 
       return result;
