@@ -28,9 +28,6 @@ export default defineComponent({
     return {
       //サイドバー
       sidebarIsVisible: false,
-      //パンくず
-      breadHome: { icon: "pi pi-home", to: "/", label: "Home" },
-      breadItems: [],
     };
   },
   methods: {
