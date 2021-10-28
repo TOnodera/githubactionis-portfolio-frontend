@@ -2,7 +2,7 @@
   <div>
     <Toolbar title="Admin" @menu-button-click="onMenuButtonClick" />
     <main>
-      <Breadcrumb :model="breadItems" :home="breadHome" class="p-mb-2" />
+      <Breadcrumb class="p-mb-2" />
       <slot name="main"></slot>
     </main>
     <Sidebar :sidebarIsVisible="sidebarIsVisible" />

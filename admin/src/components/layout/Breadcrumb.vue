@@ -19,7 +19,7 @@ export default defineComponent({
     };
   },
   methods: {
-    createBreadItems(path: string) {
+    createBreadItemsFromRouterPath(path: string) {
       const result = [];
       // /区切りで配列化、カラ文字は除外
       const paths: string[] = path.split("/").filter((value) => value);
@@ -34,7 +34,7 @@ export default defineComponent({
   },
   watch: {
     $route() {
-      this.breadItems = this.createBreadItems(this.$route.path);
+      this.breadItems = this.createBreadItemsFromRouterPath(this.$route.path);
     },
   },
 });
