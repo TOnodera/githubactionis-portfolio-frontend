@@ -14,8 +14,8 @@
 import { defineComponent } from "vue";
 import Toolbar from "./Toolbar.vue";
 import Bottom from "./Bottom.vue";
-import Sidebar from "./Sidebar";
-import Breadcrumb from "primevue/breadcrumb";
+import Sidebar from "./Sidebar.vue";
+import Breadcrumb from "./Breadcrumb.vue";
 
 export default defineComponent({
   components: {
@@ -36,25 +36,6 @@ export default defineComponent({
   methods: {
     onMenuButtonClick() {
       this.sidebarIsVisible = !this.sidebarIsVisible;
-    },
-    createBreadItems(path: string) {
-      const paths: string[] = path.split("/").filter((value) => value);
-      let to: string;
-      to = "";
-      const result: any = [];
-      paths.forEach((path) => {
-        to += `/${path}`;
-        result.push({
-          label: path,
-          to: to,
-        });
-      });
-      return result;
-    },
-  },
-  watch: {
-    $route() {
-      this.breadItems = this.createBreadItems(this.$route.path);
     },
   },
 });
