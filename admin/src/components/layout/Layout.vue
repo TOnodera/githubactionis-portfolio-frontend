@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import Toolbar from "./Toolbar.vue";
 import Bottom from "./Bottom.vue";
@@ -31,53 +31,31 @@ export default defineComponent({
       //パンくず
       breadHome: { icon: "pi pi-home", to: "/", label: "Home" },
       breadItems: [],
-      //メニュー表示
-      menu: [
-        {
-          label: "ブログ",
-          icon: "pi pi-book",
-          items: [
-            [
-              {
-                label: "一覧",
-                items: [{ label: "ブログ一覧" /* to: "/blogs" */ }],
-              },
-              {
-                label: "新規作成",
-                items: [{ label: "ブログ新規作成" }],
-              },
-            ],
-          ],
-        },
-        {
-          label: "ユーザー",
-          icon: "pi pi-user",
-          items: [
-            [
-              {
-                label: "一覧",
-                items: [{ label: "ユーザー一覧" /* to: "/blogs" */ }],
-              },
-              {
-                label: "新規作成",
-                items: [{ label: "ユーザー新規作成" }],
-              },
-            ],
-          ],
-        },
-      ],
     };
   },
   methods: {
     onMenuButtonClick() {
       this.sidebarIsVisible = !this.sidebarIsVisible;
     },
-    createBreadItems() {
-      this.breadItems = [];
+    createBreadItems(path: string) {
+      const paths: string[] = path.split("/").filter((value) => value);
+      let to: string;
+      to = "";
+      const result: any = [];
+      paths.forEach((path) => {
+        to += `/${path}`;
+        result.push({
+          label: path,
+          to: to,
+        });
+      });
+      return result;
     },
   },
-  mounted() {
-    this.createBreadItems();
+  watch: {
+    $route() {
+      this.breadItems = this.createBreadItems(this.$route.path);
+    },
   },
 });
 </script>

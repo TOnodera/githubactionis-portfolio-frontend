@@ -38,11 +38,11 @@ export default defineComponent({
             [
               {
                 label: "一覧",
-                items: [{ label: "ブログ一覧" /* to: "/blogs" */ }],
+                items: [{ label: "ブログ一覧", to: "/blogs" }],
               },
               {
                 label: "新規作成",
-                items: [{ label: "ブログ新規作成" }],
+                items: [{ label: "ブログ新規作成", to: "/blogs/create" }],
               },
             ],
           ],
@@ -54,11 +54,11 @@ export default defineComponent({
             [
               {
                 label: "一覧",
-                items: [{ label: "ユーザー一覧" /* to: "/blogs" */ }],
+                items: [{ label: "ユーザー一覧", to: "/users" }],
               },
               {
                 label: "新規作成",
-                items: [{ label: "ユーザー新規作成" }],
+                items: [{ label: "ユーザー新規作成", to: "/users/create" }],
               },
             ],
           ],
