@@ -1,0 +1,4 @@
+//サイドバーのメニュー表示用　コメントアウトするとメニューがスクロール表示されてしまう
+.p-sidebar-content {
+  overflow: visible !important;
+}
