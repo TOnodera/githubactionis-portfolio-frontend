@@ -2,3 +2,7 @@
 .p-sidebar-content {
   overflow: visible !important;
 }
+//サイドバー内メニューの幅をCSSフレームワークのCSSを上書きして１００％にしている
+.p-megamenu.p-megamenu-vertical {
+  width: 100% !important;
+}

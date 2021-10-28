@@ -1,28 +1,35 @@
 <template>
-  <div>
-    <Toolbar title="Admin" @menu-button-click="onMenuButtonClick" />
-    <main>
-      <slot name="main"></slot>
-    </main>
-    <Sidebar :sidebarIsVisible="sidebarIsVisible" />
-    <Bottom />
-  </div>
+  <Sidebar v-model:visible="visible">
+    <div class="side-bar-header">
+      <h2>メニュー</h2>
+      <hr />
+    </div>
+    <MegaMenu :model="menu" orientation="vertical" />
+  </Sidebar>
 </template>
-
 <script>
 import { defineComponent } from "vue";
-import Toolbar from "./Toolbar.vue";
-import Bottom from "./Bottom.vue";
-import Sidebar from "./Sidebar";
+import Sidebar from "primevue/sidebar";
+import MegaMenu from "primevue/megamenu";
 export default defineComponent({
   components: {
-    Toolbar,
-    Bottom,
     Sidebar,
+    MegaMenu,
+  },
+  props: {
+    sidebarIsVisible: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  watch: {
+    sidebarIsVisible(newValue) {
+      this.visible = newValue;
+    },
   },
   data() {
     return {
-      sidebarIsVisible: false,
+      visible: this.sidebarIsVisible,
       menu: [
         {
           label: "ブログ",
@@ -59,11 +66,6 @@ export default defineComponent({
       ],
     };
   },
-  methods: {
-    onMenuButtonClick() {
-      this.sidebarIsVisible = !this.sidebarIsVisible;
-    },
-  },
 });
 </script>
 
@@ -74,9 +76,5 @@ export default defineComponent({
     margin-bottom: 0.2rem;
   }
   margin-bottom: 0.5rem;
-}
-main {
-  min-height: 100vh;
-  padding: 50px;
 }
 </style>

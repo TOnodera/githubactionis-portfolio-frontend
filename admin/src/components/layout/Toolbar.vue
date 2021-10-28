@@ -1,7 +1,7 @@
 <template>
   <div class="p-grid toolbar">
     <div class="p-col-12 p-md-6">
-      <div @click="onMenuButtonClick">
+      <div @click="onMenuButtonClick" class="title">
         <i class="pi pi-bars menu-button" v-if="isNotLoginPage" /> {{ title }}
       </div>
     </div>
@@ -34,8 +34,12 @@ export default defineComponent({
 .toolbar {
   background-color: var(--primary-color);
   color: var(--text-color-accent);
-  .menu-button {
-    cursor: pointer;
+  .title {
+    padding: 0.5rem;
+    .menu-button {
+      cursor: pointer;
+      margin-right: 0.2rem;
+    }
   }
 }
 </style>
