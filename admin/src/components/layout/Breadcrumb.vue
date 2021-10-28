@@ -7,6 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Breadcrumb from "primevue/breadcrumb";
+import { BreadcrumbType } from "@/types";
 
 export default defineComponent({
   components: {
@@ -15,12 +16,12 @@ export default defineComponent({
   data() {
     return {
       breadHome: { icon: "pi pi-home", to: "/", label: "Home" },
-      breadItems: [],
+      breadItems: [] as BreadcrumbType[],
     };
   },
   methods: {
-    createBreadItemsFromRouterPath(path: string) {
-      const result = [];
+    createBreadItemsFromRouterPath(path: string): BreadcrumbType[] {
+      const result: BreadcrumbType[] = [];
       // /区切りで配列化、カラ文字は除外
       const paths: string[] = path.split("/").filter((value) => value);
       //返却用オブジェクト作成
