@@ -31,6 +31,24 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Blog/Edit.vue"),
   },
+  {
+    path: "/roles",
+    name: "Roles",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Role/Index.vue"),
+  },
+  {
+    path: "/roles/create",
+    name: "RoleCreate",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Role/Create.vue"),
+  },
+  {
+    path: "/roles/edit",
+    name: "RoleEdit",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Role/Edit.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -63,6 +63,22 @@ export default defineComponent({
             ],
           ],
         },
+        {
+          label: "ロール",
+          icon: "pi pi-user",
+          items: [
+            [
+              {
+                label: "一覧",
+                items: [{ label: "ロール一覧", to: "/roles" }],
+              },
+              {
+                label: "新規作成",
+                items: [{ label: "ロール新規作成", to: "/roles/create" }],
+              },
+            ],
+          ],
+        },
       ],
     };
   },
