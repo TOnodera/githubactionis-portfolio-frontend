@@ -1,5 +1,5 @@
 <template>
-  <DataTable :value="latestPageData">
+  <DataTable :value="roles">
     <Column field="vin" header="Vin"></Column>
     <Column field="year" header="Year"></Column>
     <Column field="brand" header="Brand"></Column>
@@ -11,6 +11,7 @@
 import { defineComponent } from "vue";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import http from "@/helper/http";
 
 export default defineComponent({
   components: {
@@ -20,7 +21,7 @@ export default defineComponent({
   data() {
     return {
       display: true,
-      latestPageData: [
+      roles: [
         {
           brand: "Volkswagen",
           year: 2012222222222,
@@ -38,6 +39,9 @@ export default defineComponent({
         { brand: "Fiat", year: 2013, color: "Red", vin: "245t2s" },
       ],
     };
+  },
+  async mounted() {
+    this.roles = await http.get("/api/roles");
   },
 });
 </script>
