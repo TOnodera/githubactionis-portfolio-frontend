@@ -6,15 +6,15 @@
       <div class="p-mb-4 p-mt-4">
         <span class="p-float-label">
           <InputText
-            id="username"
+            id="email"
             type="text"
-            v-model="username"
+            v-model="email"
             :class="{ 'p-invalid': usernameIsInvalid }"
           />
-          <label for="username">ユーザー名</label>
+          <label for="email">email</label>
         </span>
         <div v-if="usernameIsInvalid">
-          <small class="p-error">ユーザー名を入力して下さい。</small>
+          <small class="p-error">emailを入力して下さい。</small>
         </div>
       </div>
 
@@ -30,6 +30,9 @@
         </span>
         <div v-if="passwordIsInvalid">
           <small class="p-error">パスワードを入力して下さい。</small>
+        </div>
+        <div v-if="credentialError">
+          <small class="p-error">{{ errorMessage }}</small>
         </div>
       </div>
 
@@ -59,21 +62,21 @@ export default defineComponent({
   data() {
     return {
       display: true,
-      username: "",
+      email: "",
       password: "",
       usernameIsInvalid: false,
       passwordIsInvalid: false,
+      credentialError: false,
+      errorMessage: "",
     };
   },
   methods: {
     async send() {
-      this.usernameIsInvalid = !this.username ? true : false;
-      this.passwordIsInvalid = !this.password ? true : false;
-      try {
-        const response = await http.post("/api/login");
-      } catch (e) {
-        console.log("exp", e);
-      }
+      this.usernameIsInvalid = !this.email;
+      this.passwordIsInvalid = !this.password;
+      const credentials = { email: this.email, password: this.password };
+      const response = await http.post("/api/login", credentials);
+      console.log(response.data);
     },
   },
   async mounted() {

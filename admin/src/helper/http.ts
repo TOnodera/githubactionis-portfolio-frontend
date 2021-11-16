@@ -14,6 +14,9 @@ http.interceptors.response.use(
     if (error.response.status === 401) {
       router.push({ name: "Login" });
     }
+    if (error.response.status === 422) {
+      return error;
+    }
   }
 );
 
