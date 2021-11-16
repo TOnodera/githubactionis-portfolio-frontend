@@ -14,5 +14,5 @@ app.use(router);
 app.use(Primevue);
 app.mount("#app");
 
-// エラーハンドリング
+// エラーハンドリン
 window.addEventListener("error", (event) => {});
