@@ -85,7 +85,6 @@ export default defineComponent({
       // ログインに成功したらダッシュボードに遷移
       const credentials = { email: this.email, password: this.password };
       const response = await http.post("/api/login", credentials);
-      console.log(response.data);
       if (response.data.success === LOGIN_SUCCESS) {
         router.push({ name: "Dashboard" });
         return;
