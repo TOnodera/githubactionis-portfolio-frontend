@@ -52,6 +52,9 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import store from "@/store";
 import http from "@/helper/http";
+import { LOGIN_SUCCESS } from "@/config/const";
+import router from "@/router";
+import { isEmail } from "@/helper/validation";
 
 export default defineComponent({
   components: {
@@ -72,11 +75,25 @@ export default defineComponent({
   },
   methods: {
     async send() {
-      this.usernameIsInvalid = !this.email;
+      // 入力チェック
+      this.usernameIsInvalid = !this.email || !isEmail(this.email);
       this.passwordIsInvalid = !this.password;
+      if (this.usernameIsInvalid || this.passwordIsInvalid) {
+        return;
+      }
+
+      // ログインに成功したらダッシュボードに遷移
       const credentials = { email: this.email, password: this.password };
       const response = await http.post("/api/login", credentials);
       console.log(response.data);
+      if (response.data.success === LOGIN_SUCCESS) {
+        router.push({ name: "Dashboard" });
+        return;
+      }
+
+      // 失敗した場合はcredentialErrorをtrueにしてエラーメッセージを表示
+      this.credentialError = true;
+      this.errorMessage = response.data.message;
     },
   },
   async mounted() {

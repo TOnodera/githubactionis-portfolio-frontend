@@ -13,6 +13,3 @@ const app = createApp(App);
 app.use(router);
 app.use(Primevue);
 app.mount("#app");
-
-// エラーハンドリング
-window.addEventListener("error", (event) => {});
